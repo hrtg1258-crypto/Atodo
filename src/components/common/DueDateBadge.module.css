@@ -1,0 +1,21 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: 99px;
+  font-size: var(--font-size-sm);
+  background-color: var(--color-sidebar);
+  color: var(--color-text-muted);
+}
+
+.overdue {
+  background-color: var(--color-overdue-bg);
+  color: var(--color-overdue);
+  font-weight: 600;
+}
+
+.today {
+  background-color: var(--priority-medium-bg);
+  color: var(--priority-medium);
+  font-weight: 600;
+}
