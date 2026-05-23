@@ -17,6 +17,7 @@ export function TaskEditForm({ task, onCancel }: TaskEditFormProps) {
   const [priority, setPriority] = useState<Priority>(task.priority);
   const [categoryId, setCategoryId] = useState(task.categoryId);
   const [dueDate, setDueDate] = useState(task.dueDate);
+  const [startDate, setStartDate] = useState(task.startDate || '');
   const [error, setError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -35,6 +36,7 @@ export function TaskEditForm({ task, onCancel }: TaskEditFormProps) {
           description: description.trim(),
           priority,
           categoryId,
+          startDate,
           dueDate,
           completed: task.completed,
         },
@@ -93,6 +95,12 @@ export function TaskEditForm({ task, onCancel }: TaskEditFormProps) {
           ))}
         </select>
 
+        <input
+          className={styles.dateInput}
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
         <input
           className={styles.dateInput}
           type="date"

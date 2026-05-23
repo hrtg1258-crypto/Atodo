@@ -12,6 +12,7 @@ export function AddTaskForm() {
   const [priority, setPriority] = useState<Priority>('medium');
   const [categoryId, setCategoryId] = useState('');
   const [dueDate, setDueDate] = useState('');
+  const [startDate, setStartDate] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,6 +30,7 @@ export function AddTaskForm() {
         completed: false,
         priority,
         categoryId,
+        startDate,
         dueDate,
       },
     });
@@ -36,6 +38,7 @@ export function AddTaskForm() {
     setDescription('');
     setPriority('medium');
     setCategoryId('');
+    setStartDate('');
     setDueDate('');
     setError('');
   };
@@ -94,6 +97,13 @@ export function AddTaskForm() {
             ))}
           </select>
 
+          <input
+            className={styles.dateInput}
+            type="date"
+            value={startDate}
+            placeholder="开始日期"
+            onChange={(e) => setStartDate(e.target.value)}
+          />
           <input
             className={styles.dateInput}
             type="date"

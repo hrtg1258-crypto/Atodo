@@ -99,6 +99,11 @@
   border-radius: 50%;
 }
 
+.startDate {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
 .actions {
   display: flex;
   gap: 2px;

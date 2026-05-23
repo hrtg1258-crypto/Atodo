@@ -16,10 +16,13 @@ export interface Task {
   completed: boolean;
   priority: Priority;
   categoryId: string;
+  startDate: string;
   dueDate: string;
   createdAt: string;
   updatedAt: string;
 }
+
+export type ViewMode = 'list' | 'gantt';
 
 export interface FilterOptions {
   status: TaskStatus;

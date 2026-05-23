@@ -10,20 +10,37 @@ const STATUS_OPTIONS: { value: TaskStatus; label: string }[] = [
 ];
 
 export function FilterBar() {
-  const { filter, setFilter } = useTaskContext();
+  const { filter, setFilter, viewMode, setViewMode } = useTaskContext();
 
   return (
     <div className={styles.bar}>
-      <div className={styles.tabs}>
-        {STATUS_OPTIONS.map((opt) => (
+      <div className={styles.leftGroup}>
+        <div className={styles.tabs}>
+          {STATUS_OPTIONS.map((opt) => (
+            <button
+              key={opt.value}
+              className={`${styles.tab} ${filter.status === opt.value ? styles.tabActive : ''}`}
+              onClick={() => setFilter((prev) => ({ ...prev, status: opt.value }))}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+
+        <div className={styles.viewToggle}>
           <button
-            key={opt.value}
-            className={`${styles.tab} ${filter.status === opt.value ? styles.tabActive : ''}`}
-            onClick={() => setFilter((prev) => ({ ...prev, status: opt.value }))}
+            className={`${styles.viewBtn} ${viewMode === 'list' ? styles.viewActive : ''}`}
+            onClick={() => setViewMode('list')}
           >
-            {opt.label}
+            列表
           </button>
-        ))}
+          <button
+            className={`${styles.viewBtn} ${viewMode === 'gantt' ? styles.viewActive : ''}`}
+            onClick={() => setViewMode('gantt')}
+          >
+            甘特图
+          </button>
+        </div>
       </div>
 
       <div className={styles.controls}>

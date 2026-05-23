@@ -55,6 +55,11 @@ export function TaskItem({ task }: TaskItemProps) {
 
           <div className={styles.meta}>
             <PriorityBadge priority={task.priority} />
+            {task.startDate && (
+              <span className={styles.startDate}>
+                {task.startDate} 起
+              </span>
+            )}
             <DueDateBadge dueDate={task.dueDate} completed={task.completed} />
             {category && (
               <span className={styles.category}>

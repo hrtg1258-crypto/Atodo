@@ -1,6 +1,6 @@
-import { useReducer, useEffect, useState, type ReactNode } from 'react';
+import { useReducer, useEffect, useState, useCallback, type ReactNode } from 'react';
 import { TaskContext } from './TaskContext';
-import { AppState, FilterOptions, TaskAction } from '../types';
+import { AppState, FilterOptions, TaskAction, ViewMode } from '../types';
 import { generateId } from '../utils/id';
 import { loadState, saveState, getDefaultState } from '../utils/storage';
 
@@ -70,13 +70,16 @@ function taskReducer(state: AppState, action: TaskAction): AppState {
 export function TaskProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(taskReducer, null, () => loadState() || getDefaultState());
   const [filter, setFilter] = useState<FilterOptions>(initialFilter);
+  const [viewMode, setViewMode] = useState<ViewMode>('list');
+
+  const handleSetViewMode = useCallback((mode: ViewMode) => setViewMode(mode), []);
 
   useEffect(() => {
     saveState(state);
   }, [state]);
 
   return (
-    <TaskContext.Provider value={{ state, dispatch, filter, setFilter }}>
+    <TaskContext.Provider value={{ state, dispatch, filter, setFilter, viewMode, setViewMode: handleSetViewMode }}>
       {children}
     </TaskContext.Provider>
   );

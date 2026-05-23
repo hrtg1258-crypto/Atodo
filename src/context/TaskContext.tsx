@@ -1,11 +1,13 @@
 import { createContext, useContext } from 'react';
-import { AppState, FilterOptions, TaskAction } from '../types';
+import { AppState, FilterOptions, TaskAction, ViewMode } from '../types';
 
 interface TaskContextValue {
   state: AppState;
   dispatch: React.Dispatch<TaskAction>;
   filter: FilterOptions;
   setFilter: React.Dispatch<React.SetStateAction<FilterOptions>>;
+  viewMode: ViewMode;
+  setViewMode: (mode: ViewMode) => void;
 }
 
 export const TaskContext = createContext<TaskContextValue | null>(null);
